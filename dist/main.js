@@ -1,0 +1,1 @@
+(()=>{var e={127:e=>{"use strict";e.exports=require("express")}},r={};function o(s){var t=r[s];if(void 0!==t)return t.exports;var n=r[s]={exports:{}};return e[s](n,n.exports,o),n.exports}(()=>{const e=o(127)();e.use("/",((e,r)=>{r.sendFile("index.html",{root:__dirname})})),e.listen(8080,(()=>{console.log("Sever is running on port 8080")}))})()})();
