@@ -14,12 +14,12 @@ class GameManager{
         for (let key in this._lastFrameInput.keyDown){
 
             if (this._lastFrameInput.keyDown[key] == 1){
-                this.inputManager.eventKeyboard.keyDown[key] = 0
+                delete this.inputManager.eventKeyboard.keyDown[key]
             }
         }
         for (let key in this._lastFrameInput.keyUp){
             if (this._lastFrameInput.keyDown[key] == 1){
-                this.inputManager.eventKeyboard.keyUp[key] = 0
+                delete this.inputManager.eventKeyboard.keyUp[key]
             }
         }
         this._lastFrameInput = JSON.parse(JSON.stringify(this.inputManager.eventKeyboard))

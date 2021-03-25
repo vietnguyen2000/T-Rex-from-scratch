@@ -78,7 +78,7 @@ class InputManager{
         return (event) =>{
             // console.log(event.keyCode, "key up");
             this.eventKeyboard.keyUp[event.keyCode] = 1
-            this.eventKeyboard.keyPress[event.keyCode] = 0
+            delete this.eventKeyboard.keyPress[event.keyCode]
         }
     }
 
