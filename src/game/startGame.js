@@ -1,6 +1,6 @@
 import GameManager from './gameManager.js';
 
-var gameManager = new GameManager(960,540);
+var gameManager = new GameManager(540,960);
 
 requestAnimationFrame(loop);
 
