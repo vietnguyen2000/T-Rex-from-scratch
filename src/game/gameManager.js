@@ -1,12 +1,23 @@
 import  Canvas from '../canvas/MyCanvas.js';
 import InputManager from '../input/InputManager.js';
 class GameManager{
+    static instance = null;
+    getInstance(){
+        if (GameManager.instance == null){
+            GameManager.instance = new GameManager();
+        }
+        return GameManager.instance
+    }
+
     constructor(h,w){
+        if(GameManager.instance) return GameManager.instance
         this.canvas = new Canvas(h,w)
         this.components = [];
         this.inputManager = new InputManager()
         
         this._lastFrameInput = this.inputManager.default();
+
+        GameManager.instance = this
     }
     
     progressInput(){

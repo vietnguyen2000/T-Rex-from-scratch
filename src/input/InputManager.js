@@ -1,6 +1,12 @@
 class InputManager{
     
+    static instance = null;
+    getInstance(){
+        if (InputManager.instance) return InputManager.instance;
+        return new InputManager();
+    }
     constructor(){ 
+        if (InputManager.instance) return InputManager.instance;
         this.eventKeyboard = {
             keyDown: {},
             keyUp: {},
@@ -32,6 +38,8 @@ class InputManager{
         };
         document.addEventListener("keydown",this._onKeyDown(this));
         document.addEventListener("keyup",this._onKeyUp(this));
+
+        InputManager.instance = this;
     }
 
     getKeyDown(keyCode){
