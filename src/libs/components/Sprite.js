@@ -6,7 +6,7 @@ class Sprite extends MyComponent{
     }
     render(){
         let context = this.canvas.getContext('2d');
-        context.drawImage(this.image, this.gameObject.position.x, this.gameObject.position.y);
+        context.drawImage(this.image, this.gameObject.position.x-this.image.width/2, this.gameObject.position.y-this.image.height);
     }
 }
 

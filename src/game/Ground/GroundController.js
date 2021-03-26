@@ -7,7 +7,7 @@ class GroundController extends MyComponent {
         super(myGameObject);
     }
     update(time, delta) {
-        if(this.gameObject.getPosition().x <= -1500) {
+        if(this.gameObject.getPosition().x <= -300) {
             this.gameObject.setPosition(this.gameObject.defaultPosition)
         }
     }

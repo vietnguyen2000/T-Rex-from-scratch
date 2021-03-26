@@ -16,7 +16,7 @@ class Ground extends MyGameObject {
 
         //add physic
         this.physic = new Physic(this,0);
-        this.physic.velocity = new Vec2(-100,0);
+        this.physic.velocity = new Vec2(-200,0);
 
         //add controller
         this.groundController = new GroundController(this);

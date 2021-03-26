@@ -1,5 +1,5 @@
 import Canvas from '../canvas/MyCanvas.js';
-import InputManager from '../input/InputManager.js';
+import inputManager from '../input/InputManager.js';
 import Scene from '../game/Scene/Scene.js';
 class GameManager{
     static instance;
@@ -16,7 +16,7 @@ class GameManager{
         }
         this.canvas = new Canvas()
         this.components = [];
-        this.inputManager = InputManager;
+        this.inputManager = inputManager;
         
         this._lastFrameInput = this.inputManager.default();
         GameManager.instance = this;
@@ -24,6 +24,7 @@ class GameManager{
     start(h=150, w=600){
         this.canvas.start(h,w);
         this.scene = new Scene();
+        this.inputManager.start();
     }
     progressInput(){
         //remove loop key down (up) of basic event system
@@ -34,7 +35,7 @@ class GameManager{
             }
         }
         for (let key in this._lastFrameInput.keyUp){
-            if (this._lastFrameInput.keyDown[key] == 1){
+            if (this._lastFrameInput.keyUp[key] == 1){
                 delete this.inputManager.eventKeyboard.keyUp[key]
             }
         }

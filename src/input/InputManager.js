@@ -37,25 +37,30 @@ class InputManager{
             TAB: 9,
             UP: 38
         };
-        document.addEventListener("keydown",this._onKeyDown(this));
-        document.addEventListener("keyup",this._onKeyUp(this));
+        
 
         InputManager.instance = this;
     }
+    start(){
+        document.addEventListener("keydown",this._onKeyDown(this));
+        document.addEventListener("keyup",this._onKeyUp(this));
+    }
 
-    static getKeyDown(keyCode){
-        if (InputManager.instance.eventKeyboard.keyDown[keyCode] == 1) return true;
+    getKeyDown(keyCode){
+        if (this.eventKeyboard.keyDown[keyCode] == 1){            
+            return true;
+        } 
         return false
     }
     
 
-    static getKeyUp(keyCode){
-        if (InputManager.instance.eventKeyboard.keyUp[keyCode] == 1) return true;
+    getKeyUp(keyCode){
+        if (this.eventKeyboard.keyUp[keyCode] == 1) return true;
         return false
     }
 
-    static getKeyPress(keyCode){
-        if (InputManager.instance.eventKeyboard.keyPress[keyCode] == 1) return true;
+    getKeyPress(keyCode){
+        if (this.eventKeyboard.keyPress[keyCode] == 1) return true;
         return false
     }
 
@@ -77,9 +82,10 @@ class InputManager{
 
     _onKeyDown(obj){
         return (event) =>{
-            obj.eventKeyboard.keyDown[event.keyCode] = 1
-            obj.eventKeyboard.keyPress[event.keyCode] = 1
-
+            if (!obj.getKeyPress(event.keyCode)){
+                obj.eventKeyboard.keyDown[event.keyCode] = 1
+                obj.eventKeyboard.keyPress[event.keyCode] = 1
+            }
         }
     }
     _onKeyUp(obj){
@@ -90,5 +96,5 @@ class InputManager{
     }
 
 }
-let inputManager = new InputManager()
+let inputManager = new InputManager();
 export default inputManager;
