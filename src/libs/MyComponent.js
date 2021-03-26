@@ -1,4 +1,4 @@
-import gameManager from '../core/GameManager.js';
+
 import InputManager from '../input/inputManager.js';
 import MyObject from './MyObject.js';
 import Vec2 from '../utils/Vec2.js';
@@ -8,9 +8,8 @@ class MyComponent extends MyObject{
         super();
         this.gameObject = MyGameObject;
         this.gameObject.addComponent(this)
-        this.gameManager = gameManager;
         this.gameManager.components.push(this);
-        this.canvas = this.gameManager.canvas.canvas;
+        
     }
 }
 

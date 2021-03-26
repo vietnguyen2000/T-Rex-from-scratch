@@ -13,3 +13,5 @@ class SpriteAnimator extends MyComponent {
         this.animationPlaying = name;
     }
 }
+
+export default SpriteAnimator;
