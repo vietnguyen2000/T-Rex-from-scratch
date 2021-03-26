@@ -5,12 +5,13 @@ import SpriteAnimation from "../../libs/components/SpriteAnimation.js";
 import MyGameObject from "../../libs/MyGameObject.js";
 import Vec2 from "../../utils/Vec2.js";
 import DinosaurController from "./DinosaurController.js"
+import BoxCollider from "../../libs/components/BoxCollider.js";
 
 const IDLE = 'idle'
 const RUN = 'run'
 const CROUCH = 'crouch'
 class Dinosaur extends MyGameObject {
-    constructor(pos = new Vec2(20,-10)) {
+    constructor(pos = new Vec2(35,-55)) {
         super(pos);
 
         this.sprite = new Sprite(this);
@@ -51,7 +52,11 @@ class Dinosaur extends MyGameObject {
 
         //Physics
         this.physic = new Physic(this, 100);
+        
 
+        //Collider
+        this.collider = new BoxCollider(this)
+        
         //Controller
         this.controller = new DinosaurController(this);
         

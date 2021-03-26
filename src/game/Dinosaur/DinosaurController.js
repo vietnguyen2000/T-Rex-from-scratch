@@ -12,6 +12,8 @@ const JUMP = 'jump';
 const FALL = 'fall';
 const DIE = 'die';
 
+const CROUCH = 'crouch';
+
 class DinosaurController extends MyComponent {
     constructor(myGameObject) {
         super(myGameObject);
@@ -24,10 +26,10 @@ class DinosaurController extends MyComponent {
         switch(this.state){
             case RUN:
                 if (inputManager.getKeyPress(inputManager.keyCode.DOWN)){
-                    this.gameObject.getComponent('SpriteAnimator').play('crouch');
+                    this.gameObject.getComponent('SpriteAnimator').play(CROUCH);
                 }
                 else{
-                    this.gameObject.getComponent('SpriteAnimator').play('run')
+                    this.gameObject.getComponent('SpriteAnimator').play(RUN);
                 }
                 
                 if (inputManager.getKeyDown(inputManager.keyCode.SPACE) ||
@@ -40,8 +42,8 @@ class DinosaurController extends MyComponent {
                 }
                 break;
             case JUMP:
-                this.gameObject.getComponent('SpriteAnimator').play('idle');
-                if (!inputManager.getKeyPress(inputManager.keyCode.UP)){
+                this.gameObject.getComponent('SpriteAnimator').play(IDLE);
+                if (!inputManager.getKeyPress(inputManager.keyCode.UP) && inputManager.getKeyPress(inputManager.keyCode.SPACE)){
                     this._boost = false;
                 }
                 if ((this._boost) && 

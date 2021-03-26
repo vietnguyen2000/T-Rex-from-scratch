@@ -1,15 +1,25 @@
-import MyComponent from "../MyComponent";
+import MyComponent from "../MyComponent.js";
 import Position from "../../utils/Position.js";
+import Vec2 from "../../utils/Vec2.js";
 class BoxCollider extends MyComponent {
-    constructor(myGameObject, w, h) {
+    constructor(myGameObject) {
         super(myGameObject);
-        this.width = w;
-        this.height = h;
+    }
+    getSize() {
+        let sprite = this.gameObject.getComponent('Sprite');
+        let w = sprite.image.width;
+        let h = sprite.image.height;
+        return new Vec2(w,h);
     }
     isTouch(col) {
-        let center = Position.getPositionCenter(this.gameObject.position, this.width, this.height);
-        let targetCenter = Position.getPositionCenter(col.gameObject.position, col.width, col.height);
-        return (Math.abs(center.x-center.x) <= this.width/2 + col.width/2 && Math.abs(center.y-center.y) <= this.height/2 + col.height/2);
+        let sprite = this.gameObject.getComponent('Sprite');
+        let w = sprite.image.width;
+        let h = sprite.image.height;
+        let center = Position.getPositionCenter(this.gameObject.position, w, h);
+        let targetSize = col.getSize();
+        let targetCenter = Position.getPositionCenter(col.gameObject.position, targetSize.x, targetSize.y);
+        
+        return (Math.abs(center.x-targetCenter.x) <= w/2 + w/2 && Math.abs(center.y-targetCenter.y) <= w/2 + w/2);
     }
 }
 

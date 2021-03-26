@@ -5,6 +5,7 @@ import SpriteAnimation from '../../libs/components/SpriteAnimation.js'
 import Physic from '../../libs/components/Physic.js'
 import Ground from '../Ground/Ground.js'
 import Dinosaur from '../Dinosaur/Dinosaur.js'
+import Cactus from '../Obtacle/Cactus/Cactus.js'
 
 class Scene {
     constructor() {
@@ -12,7 +13,7 @@ class Scene {
 
         this.dinosaur = new Dinosaur(new Vec2(-220,50));
 
-
+        this.cactus = new Cactus(new Vec2(300,-55), this.dinosaur);
     }
 }
 

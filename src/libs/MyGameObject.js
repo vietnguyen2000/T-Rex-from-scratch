@@ -1,4 +1,4 @@
-import GameManager from '../core/GameManager.js';
+import GameCore from '../core/GameCore.js';
 import InputManager from '../input/inputManager.js';
 import MyObject from './MyObject.js';
 import Vec2 from '../utils/Vec2.js';
@@ -8,7 +8,7 @@ class MyGameObject extends MyObject {
         super();
         this.components = {};
         this.position = Position.toCanvasPosition(this.canvas,pos.x,pos.y);
-        this.gameManager = GameManager;
+        this.gameCore = GameCore;
         
     }
     setPosition(pos){

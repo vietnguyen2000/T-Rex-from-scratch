@@ -1,25 +1,25 @@
 import Canvas from '../canvas/MyCanvas.js';
 import inputManager from '../input/InputManager.js';
 import Scene from '../game/Scene/Scene.js';
-class GameManager{
+class GameCore{
     static instance;
     static getInstance(){
-        if (GameManager.instance == null){
-            GameManager.instance = new GameManager();
+        if (GameCore.instance == null){
+            GameCore.instance = new GameCore();
         }
-        return GameManager.instance;
+        return GameCore.instance;
     }
 
     constructor(){
-        if(GameManager.instance != null) {
-            return GameManager.instance
+        if(GameCore.instance != null) {
+            return GameCore.instance
         }
         this.canvas = new Canvas()
         this.components = [];
         this.inputManager = inputManager;
         
         this._lastFrameInput = this.inputManager.default();
-        GameManager.instance = this;
+        GameCore.instance = this;
     }
     start(h=150, w=600){
         this.canvas.start(h,w);
@@ -45,6 +45,7 @@ class GameManager{
         for (let component of this.components){
             if (component.enabled) component.update(time, delta);
         }
+        // console.log(1000/delta)
     }
     render(){
         this.clearCanvas(this.canvas.canvas)
@@ -62,6 +63,6 @@ class GameManager{
 
 }
 
-// let gameManager = new GameManager(960,540);
-let instance = GameManager.getInstance();
+// let gameCore = new GameCore(960,540);
+let instance = GameCore.getInstance();
 export default instance;

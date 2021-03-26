@@ -8,7 +8,7 @@ class MyComponent extends MyObject{
         super();
         this.gameObject = MyGameObject;
         this.gameObject.addComponent(this)
-        this.gameManager.components.push(this);
+        this.gameCore.components.push(this);
         
     }
 }
