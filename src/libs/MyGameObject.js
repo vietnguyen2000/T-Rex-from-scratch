@@ -6,13 +6,17 @@ import Vec2 from '../utils/Vec2.js';
 class MyGameObject extends MyObject{
     constructor(pos = new Vec2(0,0)){
         super();
-        this.components = [];
+        this.components = {};
         this.position = pos;
         this.gameManager = GameManager;
         
     }
     addComponent(component){
-        this.components.push(component)
+        this.components[component.constructor.name] = component;
+    }
+
+    getComponent(name){
+        return this.components[name] 
     }
 }
 

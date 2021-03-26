@@ -7,7 +7,7 @@ class MyComponent extends MyObject{
     constructor(MyGameObject){
         super();
         this.gameObject = MyGameObject;
-        this.gameObject.components.push(this);
+        this.gameObject.addComponent(this)
         this.gameManager = gameManager;
         this.gameManager.components.push(this);
         this.canvas = this.gameManager.canvas.canvas;
