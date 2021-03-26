@@ -1,7 +1,8 @@
-import GameManager from './GameManager.js';
+import gameManager from './GameManager.js';
 
-var gameManager = new GameManager(150,600);
+// var gameManager = new GameManager(150,600);
 
+gameManager.start(150,600);
 requestAnimationFrame(loop);
 
 let lastTime = window.performance.now();

@@ -1,13 +1,13 @@
 class MyCanvas {
-    constructor(h,w, fillStyle = '#12345678'){
+    constructor(){
         this.canvas = document.createElement("canvas");
-        
+        this.canvas.id = 'canvas';
+    }
+    start(h=150,w=600){
         this.canvas.width = w;
         this.canvas.height = h;
-        let context = this.canvas.getContext('2d');
-        context.fillStyle = fillStyle;
-        context.fillRect(0, 0, 150, 75);
         document.body.insertBefore(this.canvas, document.body.childNodes[2])
+        return this.canvas;
     }
 }
 

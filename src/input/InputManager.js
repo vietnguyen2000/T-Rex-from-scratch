@@ -1,7 +1,8 @@
+
 class InputManager{
     
     static instance = null;
-    getInstance(){
+    static getInstance(){
         if (InputManager.instance) return InputManager.instance;
         return new InputManager();
     }
@@ -42,19 +43,19 @@ class InputManager{
         InputManager.instance = this;
     }
 
-    getKeyDown(keyCode){
-        if (this.eventKeyboard.keyDown[keyCode] == 1) return true;
+    static getKeyDown(keyCode){
+        if (InputManager.instance.eventKeyboard.keyDown[keyCode] == 1) return true;
         return false
     }
     
 
-    getKeyUp(keyCode){
-        if (this.eventKeyboard.keyUp[keyCode] == 1) return true;
+    static getKeyUp(keyCode){
+        if (InputManager.instance.eventKeyboard.keyUp[keyCode] == 1) return true;
         return false
     }
 
-    getKeyPress(keyCode){
-        if (this.eventKeyboard.keyPress[keyCode] == 1) return true;
+    static getKeyPress(keyCode){
+        if (InputManager.instance.eventKeyboard.keyPress[keyCode] == 1) return true;
         return false
     }
 
@@ -76,7 +77,6 @@ class InputManager{
 
     _onKeyDown(obj){
         return (event) =>{
-            // console.log(event.keyCode, "key down");
             obj.eventKeyboard.keyDown[event.keyCode] = 1
             obj.eventKeyboard.keyPress[event.keyCode] = 1
 
@@ -84,12 +84,11 @@ class InputManager{
     }
     _onKeyUp(obj){
         return (event) =>{
-            // console.log(event.keyCode, "key up");
             this.eventKeyboard.keyUp[event.keyCode] = 1
             delete this.eventKeyboard.keyPress[event.keyCode]
         }
     }
 
 }
-
-export default InputManager;
+let inputManager = new InputManager()
+export default inputManager;
