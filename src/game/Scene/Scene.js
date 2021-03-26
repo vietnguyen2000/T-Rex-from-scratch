@@ -19,7 +19,7 @@ class Scene {
         let image3 = new Image();
         image3.src='art/Dinosaur/Dinosaur-04.png';
         spriteAnimation.addKeyFrame(image3);
-
+        spriteAnimation.play();
         this.test.addComponent(spriteAnimation);
     }
 }

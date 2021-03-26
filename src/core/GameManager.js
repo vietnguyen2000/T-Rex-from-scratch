@@ -42,13 +42,13 @@ class GameManager{
     }
     update(time, delta){
         for (let component of this.components){
-            component.update(time, delta);
+            if (component.enabled) component.update(time, delta);
         }
     }
     render(){
         this.clearCanvas(this.canvas.canvas)
         for (let component of this.components){
-            component.render();
+            if (component.enabled) component.render();
         }
     }
     clearCanvas(canvas){

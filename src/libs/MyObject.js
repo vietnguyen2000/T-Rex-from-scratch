@@ -1,4 +1,7 @@
 class MyObject{
+    constructor(){
+        this.enabled = true;
+    }
     update(){
 
     }
