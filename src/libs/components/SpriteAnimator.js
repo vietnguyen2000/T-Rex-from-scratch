@@ -23,7 +23,7 @@ class SpriteAnimator extends MyComponent {
         }
         
     }
-    render(){
+    render(time, delta){
         this._frameIndex+=1;
         let index = Math.floor(this._frameIndex/this.animationPlaying.step)%(this.keyFrame.length*this.animationPlaying.step);
         this.sprite.setSprite(this.keyFrame[index%this.keyFrame.length]);

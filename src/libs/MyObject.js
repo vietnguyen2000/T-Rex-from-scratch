@@ -15,14 +15,14 @@ class MyObject {
             this.onDisable();
         }
     }
+    pauseGame(){
+        this.gameCore.pause();
+    }
+    resumeGame(){
+        this.gameCore.resume();
+    }
     onEnable(){};
     onDisable(){};
-    update(time, delta){
-
-    }
-    render(){
-        
-    }
 }
 
 export default MyObject;

@@ -9,6 +9,8 @@ class Physic extends MyComponent {
         this.gravityScale = gravityScale;
         this.force = new Vec2(0,0);
         this.velocity = new Vec2(0,0);
+
+        this._landGround = -20;
     }
 
     update(time, delta) {
@@ -19,15 +21,14 @@ class Physic extends MyComponent {
         this.gameObject.setPosition(Vec2.add(this.gameObject.getPosition(), Vec2.mul(this.velocity, delta/1000)));
 
         if (this.gravityScale){
-            if (this.gameObject.getPosition().y < -55 ) { // Ground
+            if (this.gameObject.getPosition().y < this._landGround ) { // Ground
                 this.velocity = new Vec2(this.velocity.x, 0);
                 this.g = 0;
                 this.force
-                this.gameObject.setPosition(new Vec2(this.gameObject.getPosition().x, -55))
+                this.gameObject.setPosition(new Vec2(this.gameObject.getPosition().x, this._landGround))
                 
             }
         }
-        
     }
 
 

@@ -72,7 +72,6 @@ class DinosaurController extends MyComponent {
                 }
                 break;
             case FALL:
-                
                 if (inputManager.getKeyPress(inputManager.keyCode.DOWN)) {
                     this.physic.velocity = new Vec2(0, this.physic.velocity.y*1.2);
                 }
@@ -83,8 +82,14 @@ class DinosaurController extends MyComponent {
                     this.state = RUN;
                 }
                 break;
+            case DIE:
+                this.gameObject.getComponent('SpriteAnimator').play(DIE);
+                
         }
         
+    }
+    pause(time, delta) {
+        this.gameObject.getComponent('SpriteAnimator').play(DIE);
     }
 }
 

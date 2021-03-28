@@ -10,6 +10,7 @@ import BoxCollider from "../../libs/components/BoxCollider.js";
 const IDLE = 'idle'
 const RUN = 'run'
 const CROUCH = 'crouch'
+const DIE = 'die'
 class Dinosaur extends MyGameObject {
     constructor(pos = new Vec2(35,-55)) {
         super(pos);
@@ -48,6 +49,13 @@ class Dinosaur extends MyGameObject {
         crouchAnimation.addKeyFrame(imageTemp);
         this.spriteAnimator.addAnimation(CROUCH,crouchAnimation);
 
+        // add key frame for die animation
+        let dieAnimation = new SpriteAnimation(60);
+        imageTemp = new Image();
+        imageTemp.src = 'art/Dinosaur/Dinosaur-06.png';
+        dieAnimation.addKeyFrame(imageTemp);
+        this.spriteAnimator.addAnimation(DIE, dieAnimation);
+
         this.spriteAnimator.play(RUN);
 
         //Physics
@@ -60,7 +68,7 @@ class Dinosaur extends MyGameObject {
         //Controller
         this.controller = new DinosaurController(this);
         
-
+        this.gameCore.player = this
     }
 }
 

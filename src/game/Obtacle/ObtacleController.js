@@ -9,7 +9,6 @@ class ObtacleController extends MyComponent {
     constructor(myGameObject) {
         super(myGameObject);
         this.physic = this.gameObject.getComponent('Physic');
-
         this.setSpeed(200);
     }
 
@@ -20,7 +19,8 @@ class ObtacleController extends MyComponent {
     update(time, delta) {
         let collider = this.gameObject.getComponent('BoxCollider');
         if (collider.isTouch(this.gameObject.player.getComponent('BoxCollider'))) {
-            console.log('DIE')
+            console.log('DIE');
+            this.pauseGame();
         };
     }
 }

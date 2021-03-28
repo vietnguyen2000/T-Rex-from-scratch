@@ -1,6 +1,11 @@
 import Canvas from '../canvas/MyCanvas.js';
 import inputManager from '../input/InputManager.js';
 import Scene from '../game/Scene/Scene.js';
+
+const statusENUM = {
+    RUNNING: 'running',
+    PAUSE: 'pause',
+}
 class GameCore{
     static instance;
     static getInstance(){
@@ -19,6 +24,8 @@ class GameCore{
         this.inputManager = inputManager;
         
         this._lastFrameInput = this.inputManager.default();
+        this.status = statusENUM.RUNNING;
+
         GameCore.instance = this;
     }
     start(h=150, w=600){
@@ -42,10 +49,25 @@ class GameCore{
         this._lastFrameInput = JSON.parse(JSON.stringify(this.inputManager.eventKeyboard))
     }
     update(time, delta){
-        for (let component of this.components){
-            if (component.enabled) component.update(time, delta);
+        switch (this.status){
+            case statusENUM.RUNNING:
+                for (let component of this.components){
+                    if (component.enabled) component.update(time, delta);
+                }
+                break;
+            case statusENUM.PAUSE:
+                for (let component of this.components){
+                    if (component.enabled) component.pause(time, delta);
+                }
         }
+        
         // console.log(1000/delta)
+    }
+    pause(){
+        this.status = 'pause';
+    }
+    resume(){
+        this.status = 'resume';
     }
     render(){
         this.clearCanvas(this.canvas.canvas)

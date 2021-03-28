@@ -5,10 +5,10 @@ import MyGameObject from "../../libs/MyGameObject.js";
 import Vec2 from "../../utils/Vec2.js";
 import ObtacleController from "./ObtacleController.js";
 class Obtacle extends MyGameObject {
-    constructor(pos = new Vec2(800,-55), player) {
+    constructor(pos = new Vec2(800,-55)) {
         super(pos);
 
-        this.player = player;
+        this.player = this.gameCore.player;
 
         //sprite
         this.sprite = new Sprite(this);

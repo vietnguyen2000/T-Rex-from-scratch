@@ -6,14 +6,17 @@ import Physic from '../../libs/components/Physic.js'
 import Ground from '../Ground/Ground.js'
 import Dinosaur from '../Dinosaur/Dinosaur.js'
 import Cactus from '../Obtacle/Cactus/Cactus.js'
+import GameManager from '../gameManager.js'
 
 class Scene {
     constructor() {
-        this.ground = new Ground(new Vec2(900,-55));
+        this.ground = new Ground(new Vec2(-300,-55));
 
-        this.dinosaur = new Dinosaur(new Vec2(-220,50));
+        this.dinosaur = new Dinosaur(new Vec2(-280,-20));
 
-        this.cactus = new Cactus(new Vec2(300,-55), this.dinosaur);
+        this.cactus = new Cactus(new Vec2(300,-20));
+
+        this.gameManager = new GameManager(new Vec2(0,0), this.dinosaur, this.ground);
     }
 }
 
