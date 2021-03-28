@@ -12,8 +12,10 @@ class GameManagerController extends MyComponent {
         this._rate = 0.5;
     }
     update(time, delta) {
-        this.gameObject.score = (time - this.gameObject.startTime)/100;
-        // console.log(this.gameObject.score)
+        if (Math.floor((time - this.gameObject.startTime)/100) != this.gameObject.score.num)
+            this.gameObject.score.setNumber(Math.floor((time - this.gameObject.startTime)/100));
+        if (Math.abs(Math.floor(1000/delta)-this.gameObject.fps.num) > 3)
+            this.gameObject.fps.setNumber(Math.floor(1000/delta))
     }
     
     // generateCactus(delta){
@@ -27,22 +29,23 @@ class GameManagerController extends MyComponent {
 }
 
 class GameManager extends MyGameObject {
-    constructor(pos = new Vec2(0,0), player, ground){
+    constructor(pos = new Vec2(0,0), obj){
         super(pos);
-        this.player = player;
-        this.ground = ground;
+        this.player = obj.player;
+        this.ground = obj.ground;
+        this.score = obj.score;
+        this.highScore = obj.highScore;
+        this.fps = obj.fps;
+
         this.CactusPooler = new ObjectPooler(Cactus,20);
         this.gameManagerController = new GameManagerController(this);
         this.gameCore.gameManagerScript = this.gameManagerController;
         this.pause = true;
-        this.highscore = 0;
-        this.score = 0;
         this.startTime = window.performance.now();
         this.playGame();
     }
 
     playGame() {
-        this.score = 0;
         this.startTime = window.performance.now();
     }
     pauseGame(){

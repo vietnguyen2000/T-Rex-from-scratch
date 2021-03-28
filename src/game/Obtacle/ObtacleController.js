@@ -20,7 +20,6 @@ class ObtacleController extends MyComponent {
         let collider = this.gameObject.getComponent('BoxCollider');
         if (collider.isTouch(this.gameObject.player.getComponent('BoxCollider'))) {
             console.log('DIE');
-            console.log(this.gameObject.getComponent('Sprite').getPixel(100,100));
             this.pauseGame();
         };
     }
