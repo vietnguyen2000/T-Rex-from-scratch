@@ -10,7 +10,7 @@ class Physic extends MyComponent {
         this.force = new Vec2(0,0);
         this.velocity = new Vec2(0,0);
 
-        this._landGround = -20;
+        this._landGround = -65;
     }
 
     update(time, delta) {

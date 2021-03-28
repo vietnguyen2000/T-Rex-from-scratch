@@ -19,9 +19,8 @@ class BoxCollider extends MyComponent {
         (Math.abs(thisRect.center.y-targetRect.center.y) <= thisRect.height + targetRect.height));
     }
     getRect(){
-        let pos = this.gameObject.position;
         let size = this.getSize()
-        let center = Position.getPositionCenter(pos, size.x, size.y)
+        let center = this.gameObject.getComponent('Sprite').getCenter();
         size.x -= 5
         size.y -= 5
         return {
@@ -31,14 +30,14 @@ class BoxCollider extends MyComponent {
         }
     }
     // render for debug
-    // render(){
-    //     let ctx = this.canvas.getContext('2d');
-    //     ctx.strokeStyle = 'green';
-    //     ctx.beginPath();
-    //     let rect = this.getRect();
-    //     ctx.rect(rect.center.x - rect.width, rect.center.y - rect.height , rect.width*2, rect.height*2);
-    //     ctx.stroke();
-    // }
+    render(){
+        let ctx = this.canvas.getContext('2d');
+        ctx.strokeStyle = 'green';
+        ctx.beginPath();
+        let rect = this.getRect();
+        ctx.rect(rect.center.x - rect.width, rect.center.y - rect.height , rect.width*2, rect.height*2);
+        ctx.stroke();
+    }
 }
 
 export default BoxCollider

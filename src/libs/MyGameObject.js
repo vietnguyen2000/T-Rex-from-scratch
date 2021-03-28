@@ -8,7 +8,7 @@ class MyGameObject extends MyObject {
         super();
         this.defaultPosition = pos;
         this.components = {};
-        this.position = Position.toCanvasPosition(this.canvas,pos.x,pos.y);
+        this.position = Position.toCanvasPosition(this.canvas,pos.x,pos.y); // this is bottom position
         this.gameCore = GameCore;
         
     }

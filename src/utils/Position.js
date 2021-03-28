@@ -1,11 +1,11 @@
 import Vec2 from "./Vec2.js";
 
 class Position{
-    static getPositionBottom(pos, w, h) {
-        return new Vec2(pos.x + w/2, pos.y + h);
+    static getPositionTopLeft(pos, w, h) {
+        return new Vec2(pos.x - w/2, pos.y - h);
     }
     static getPositionCenter(pos,w,h) {
-        return new Vec2(pos.x + w/2, pos.y + h/2);
+        return new Vec2(pos.x, pos.y - h/2);
     }
     static toCanvasPosition(canvans, x, y) {
         return new Vec2(canvas.width/2+x, canvas.height/2 - y);

@@ -52,7 +52,7 @@ class DinosaurController extends MyComponent {
                     ) 
                     {
                         this.physic.velocity = new Vec2(0,300);
-                        if (this.gameObject.getPosition().y > -15){
+                        if (this.gameObject.getPosition().y > this.physic._landGround + 40){
                             this._boost = false
                         }
                 
@@ -78,7 +78,7 @@ class DinosaurController extends MyComponent {
                 else if (inputManager.getKeyUp(inputManager.keyCode.DOWN)) {
                     this.physic.velocity = new Vec2(0, this.physic.velocity.y/1.2);
                 }
-                if (this.gameObject.getPosition().y <= -55){
+                if (this.gameObject.getPosition().y <= this.physic._landGround){
                     this.state = RUN;
                 }
                 break;

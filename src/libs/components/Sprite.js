@@ -8,9 +8,14 @@ class Sprite extends MyComponent{
     render(){
         let context = this.canvas.getContext('2d');
         
-        let pos = Position.getPositionBottom(this.gameObject.position, this.image.width, this.image.height);
-        context.drawImage(this.image, this.gameObject.position.x, this.gameObject.position.y);
+        let pos = this.gameObject.position;
+        context.drawImage(this.image, pos.x - this.image.width/2, pos.y - this.image.height);
         
+    }
+
+    getCenter(){
+        let bottom = this.gameObject.position;
+        return new Vec2(bottom.x, bottom.y - this.image.height/2);
     }
 }
 
