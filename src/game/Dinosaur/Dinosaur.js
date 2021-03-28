@@ -16,7 +16,8 @@ class Dinosaur extends MyGameObject {
         super(pos);
 
         this.sprite = new Sprite(this);
-        let image = new Image();
+        let image = new Image();  
+           
         image.src ='art/Dino_prepare.png';
         this.sprite.setSprite(image);
 

@@ -11,7 +11,6 @@ class Ground extends MyGameObject {
         img.src = 'art/Ground/Ground.png';
         this.sprite = new Sprite(this);
         this.sprite.setSprite(img);
-        console.log(this.sprite, this.position)
 
         //add physic
         this.physic = new Physic(this,0);
