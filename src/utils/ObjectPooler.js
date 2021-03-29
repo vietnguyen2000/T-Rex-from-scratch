@@ -13,7 +13,7 @@ class ObjectPooler {
             }
             return this.getInstance();
         };
-        let res = this.ready.pop();
+        let res = this.ready.shift();
         res.setActive(true);
         return res;
     }

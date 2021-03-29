@@ -11,9 +11,14 @@ import MyNumber from '../Text/MyNumber.js'
 import HighScore from '../Text/HighScore.js'
 import GameOver from '../GameOver/GameOver.js'
 import Replay from '../GameOver/Replay.js'
+import Cloud from '../Cloud/Cloud.js'
 
 class Scene {
     constructor() {
+        this.cloud1 = new Cloud(new Vec2(300,0), 12)
+        this.cloud2 = new Cloud(new Vec2(150,20), 15)
+        this.cloud3 = new Cloud(new Vec2(-100,50), 17)
+
         this.obj = {
             ground: new Ground(new Vec2(900,-65)),
             player:new Dinosaur(new Vec2(-250,-65)),
@@ -23,6 +28,7 @@ class Scene {
             gameOver: new GameOver(new Vec2(0,30)),
             replay: new Replay(new Vec2(0,-20))
         }
+
         
         this.gameManager = new GameManager(new Vec2(0,0), this.obj);
         // this.cactus = new Cactus(new Vec2(300,-65));
