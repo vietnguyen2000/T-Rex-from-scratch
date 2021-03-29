@@ -2,7 +2,7 @@ import Sprite from "../../libs/components/Sprite.js";
 import Vec2 from "../../utils/Vec2.js";
 import Character from "./Character.js";
 import MyNumber from "./MyNumber.js";
-const WIDTH_OF_DIGIT = 12
+const WIDTH_OF_DIGIT = 11
 class HighScore extends MyNumber {
     constructor(pos, length = 5) {
         super(pos, length);

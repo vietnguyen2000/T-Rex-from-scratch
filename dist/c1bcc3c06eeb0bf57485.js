@@ -1,0 +1,1 @@
+import gameCore from"./GameCore.js";gameCore.start(150,600),requestAnimationFrame(loop);let lastTime=window.performance.now();function loop(){let e=window.performance.now(),o=e-lastTime;gameCore.progressInput(),gameCore.update(e,o),gameCore.render(),lastTime=e,requestAnimationFrame(loop)}

@@ -1,7 +1,3 @@
-import Physic from "../../libs/components/Physic.js";
-import Sprite from "../../libs/components/Sprite.js";
-import SpriteAnimator from "../../libs/components/SpriteAnimator.js";
-import SpriteAnimation from "../../libs/components/SpriteAnimation.js";
 import MyComponent from "../../libs/MyComponent.js";
 import Vec2 from "../../utils/Vec2.js";
 import inputManager from "../../input/InputManager.js";
@@ -20,6 +16,11 @@ class DinosaurController extends MyComponent {
         this.physic = this.gameObject.getComponent('Physic');
         this.state = RUN
 
+        this._boost = false;
+    }
+    reset() {
+        super.reset();
+        this.state = RUN;
         this._boost = false;
     }
     update(time, delta) {

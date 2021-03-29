@@ -62,7 +62,7 @@ class BoxCollider extends MyComponent {
         }
     }
     // render for debug
-    render(){
+    debugRender(){
         let ctx = this.canvas.getContext('2d');
         ctx.strokeStyle = 'green';
         ctx.beginPath();

@@ -2,31 +2,19 @@ class ObjectPooler {
     constructor(GameObject, capacity = 10) {
         this.type = GameObject;
         this.ready = []
-        this.waiting = []
         this.size = 0;
 
         this.instantiate(capacity);
     }
     getInstance(){
         if (this.ready.length == 0){
-            let temp = []
-            while (this.waiting.length != 0) {
-                let m = this.waiting.pop();
-                if (m.enabled) {
-                    temp.push(m)
-                }
-                else{
-                    this.ready.push(m);
-                }
-            }
             if (this.ready.length == 0){
                 this.instantiate(this.size);
             }
             return this.getInstance();
         };
         let res = this.ready.pop();
-        this.waiting.push(res);
-        res.enable();
+        res.setActive(true);
         return res;
     }
     instantiate(n){
@@ -39,7 +27,8 @@ class ObjectPooler {
     }
 
     disableInstance(instance) {
-
+        instance.setActive(false);
+        this.ready.push(instance);
     }
 }
 

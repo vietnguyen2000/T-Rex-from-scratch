@@ -13,6 +13,7 @@ class MyGameObject extends MyObject {
         
     }
     reset() {
+        super.reset();
         this.position = Position.toCanvasPosition(this.canvas,this.defaultPosition.x, this.defaultPosition.y);
     }
     setActive(active) {

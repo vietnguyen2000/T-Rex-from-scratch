@@ -58,16 +58,18 @@ class GameCore{
             case statusENUM.PAUSE:
                 for (let component of this.components){
                     if (component.enabled) component.pause(time, delta);
+
                 }
+                break;
         }
         
         // console.log(1000/delta)
     }
     pause(){
-        this.status = 'pause';
+        this.status = statusENUM.PAUSE;
     }
     resume(){
-        this.status = 'resume';
+        this.status = statusENUM.RUNNING;
     }
     render(){
         this.clearCanvas(this.canvas.canvas)

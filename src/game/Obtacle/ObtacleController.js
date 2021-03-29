@@ -12,16 +12,12 @@ class ObtacleController extends MyComponent {
         this.setSpeed(200);
     }
 
-    setSpeed(speed) {
-        this.physic.velocity = new Vec2(-speed,0)
+    reset() {
+        super.reset();
     }
 
-    update(time, delta) {
-        let collider = this.gameObject.getComponent('BoxCollider');
-        if (collider.isTouch(this.gameObject.player.getComponent('BoxCollider'))) {
-            console.log('DIE');
-            this.pauseGame();
-        };
+    setSpeed(speed) {
+        this.physic.velocity = new Vec2(-speed,0)
     }
 }
 

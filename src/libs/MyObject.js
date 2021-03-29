@@ -21,6 +21,7 @@ class MyObject {
     resumeGame(){
         this.gameCore.resume();
     }
+    reset(){};
     onEnable(){};
     onDisable(){};
 }

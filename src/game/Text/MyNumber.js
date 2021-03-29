@@ -1,7 +1,7 @@
 import MyGameObject from "../../libs/MyGameObject.js";
 import Vec2 from "../../utils/Vec2.js";
 import Digit from "./Digit.js"
-const WIDTH_OF_DIGIT = 12
+const WIDTH_OF_DIGIT = 11
 class MyNumber extends MyGameObject {
     constructor(pos, length = 5) {
         super(pos); 
