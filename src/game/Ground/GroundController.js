@@ -5,11 +5,16 @@ import Vec2 from "../../utils/Vec2.js"
 class GroundController extends MyComponent {
     constructor(myGameObject){
         super(myGameObject);
+        this.physic = this.gameObject.getComponent('Physic');
     }
     update(time, delta) {
         if(this.gameObject.getPosition().x <= this.gameObject.defaultPosition.x - 1200) {
-            this.gameObject.setPosition(this.gameObject.defaultPosition)
+            let range = this.gameObject.getPosition().x - (this.gameObject.defaultPosition.x - 1200)
+            this.gameObject.setPosition(new Vec2(this.gameObject.defaultPosition.x + range, this.gameObject.defaultPosition.y))
         }
+    }
+    setSpeed(speed) {
+        this.physic.velocity = new Vec2(-speed,0)
     }
 
 }

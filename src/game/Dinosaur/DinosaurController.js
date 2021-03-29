@@ -16,6 +16,7 @@ class DinosaurController extends MyComponent {
         this.physic = this.gameObject.getComponent('Physic');
         this.state = RUN
 
+        this.jumpForce = 400;
         this._boost = false;
     }
     reset() {
@@ -35,7 +36,7 @@ class DinosaurController extends MyComponent {
                 
                 if (inputManager.getKeyDown(inputManager.keyCode.SPACE) ||
                     inputManager.getKeyDown(inputManager.keyCode.UP)) {
-                        this.physic.velocity = new Vec2(0,300);
+                        this.physic.velocity = new Vec2(0,this.jumpForce*1.3);
                         this.physic.g = 9.8;
                         this.state = JUMP;
                         this._boost = true;
@@ -52,8 +53,9 @@ class DinosaurController extends MyComponent {
                         inputManager.getKeyPress(inputManager.keyCode.UP)) 
                     ) 
                     {
-                        this.physic.velocity = new Vec2(0,300);
-                        if (this.gameObject.getPosition().y > this.physic._landGround + 40){
+                        if (this.physic.velocity.y < this.jumpForce)
+                            this.physic.velocity = new Vec2(0,this.jumpForce);
+                        if (this.gameObject.getPosition().y > this.physic._landGround + 50){
                             this._boost = false
                         }
                 

@@ -17,7 +17,7 @@ class Dinosaur extends MyGameObject {
 
         this.sprite = new Sprite(this);
         let image = new Image();  
-           
+
         image.src ='art/Dino_prepare.png';
         this.sprite.setSprite(image);
 
@@ -60,7 +60,7 @@ class Dinosaur extends MyGameObject {
         this.spriteAnimator.play(RUN);
 
         //Physics
-        this.physic = new Physic(this, 100);
+        this.physic = new Physic(this, 200);
         
 
         //Collider

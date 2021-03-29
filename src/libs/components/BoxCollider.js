@@ -1,6 +1,13 @@
 import MyComponent from "../MyComponent.js";
 import Position from "../../utils/Position.js";
 import Vec2 from "../../utils/Vec2.js";
+
+function isColor(check, color) {
+    for(let i = 0; i < 4; i++) {
+        if (check[i] != color[i]) return false
+    }
+    return true;
+}
 class BoxCollider extends MyComponent {
     constructor(myGameObject) {
         super(myGameObject);
@@ -23,9 +30,15 @@ class BoxCollider extends MyComponent {
             let targetSprite = col.gameObject.getComponent('Sprite');
             for (let i = 0; i <= overlap.range_x; i++) {
                 for (let j = 0 ; j <= overlap.range_y; j++) {
-                    if ((thisSprite.getPixel(i+overlap.index1.x, j+overlap.index1.y)[3] != 0) && (targetSprite.getPixel(i+overlap.index2.x, j+overlap.index2.y)[3] != 0)){
-                        return true;
+                    let pixel1 = thisSprite.getPixel(i+overlap.index1.x, j+overlap.index1.y)
+                    let pixel2 = targetSprite.getPixel(i+overlap.index2.x, j+overlap.index2.y);
+                    if (isColor(pixel1,[255,255,255,255]) || isColor(pixel1,[0,0,0,0]) ||
+                        isColor(pixel2,[255,255,255,255]) || isColor(pixel2,[0,0,0,0]) ) 
+                    {
+                        continue;
                     }
+
+                    return true;
                 }
             }
         }
