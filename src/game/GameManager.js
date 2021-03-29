@@ -81,7 +81,7 @@ class GameManagerController extends MyComponent {
             this.generateCactus();
             return this.getNewCactus();
         }
-        return this.listCactus.pop();
+        return this.listCactus.shift();
     }
     generateCactusByTime(delta){
         this._timeGenerate += delta/1000;
@@ -99,7 +99,7 @@ class GameManagerController extends MyComponent {
         this._randomRate = this.getRandomRate();
     }
 
-    getRandomRate(min=0.4,max=1.3) {
+    getRandomRate(min=0.5,max=1.2) {
         let rateMax = this._rate*max;
         let rateMin = this._rate*min;
         return Math.random() * (rateMax - rateMin) + rateMin;
