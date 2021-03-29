@@ -12,7 +12,6 @@ class SpriteAnimator extends MyComponent {
     }
     addAnimation(name, animation){
         this.animations[name] = animation;
-        this.gameObject.addComponent(animation);
     }
     play(name){
         if (name != this.animationNamePlaying){
@@ -20,10 +19,12 @@ class SpriteAnimator extends MyComponent {
             this.animationPlaying = this.animations[name];
             this.animationNamePlaying = name;
             this.keyFrame = this.animationPlaying.keyFrame;
+            this.sprite.setSprite(this.keyFrame[0])
         }
         
+        
     }
-    render(time, delta){
+    update(time, delta){
         this._frameIndex+=1;
         let index = Math.floor(this._frameIndex/this.animationPlaying.step)%(this.keyFrame.length*this.animationPlaying.step);
         if (this.keyFrame[index%this.keyFrame.length] != this.sprite.image)

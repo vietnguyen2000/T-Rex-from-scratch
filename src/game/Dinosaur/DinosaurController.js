@@ -63,12 +63,12 @@ class DinosaurController extends MyComponent {
                 
                 if (inputManager.getKeyPress(inputManager.keyCode.DOWN)) {
                     if (this.physic.velocity.y > 0 ){
-                        this.physic.velocity = new Vec2(0, -10);    
+                        this.physic.velocity = new Vec2(0, -20);    
                     }
-                    this.physic.velocity = new Vec2(0, this.physic.velocity.y*1.2);
+                    this.physic.velocity = new Vec2(0, this.physic.velocity.y*1.5);
                 }
                 else if (inputManager.getKeyUp(inputManager.keyCode.DOWN)) {
-                    this.physic.velocity = new Vec2(0, this.physic.velocity.y/1.2);
+                    this.physic.velocity = new Vec2(0, this.physic.velocity.y/1.5);
                 }
                 if (this.physic.velocity.y <=0){
                     this.state = FALL;

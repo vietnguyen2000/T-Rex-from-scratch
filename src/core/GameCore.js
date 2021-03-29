@@ -21,6 +21,7 @@ class GameCore{
         }
         this.canvas = new Canvas()
         this.components = [];
+        this._componentsRank = [];
         this.inputManager = inputManager;
         
         this._lastFrameInput = this.inputManager.default();
@@ -73,7 +74,8 @@ class GameCore{
     }
     render(){
         this.clearCanvas(this.canvas.canvas)
-        for (let component of this.components){
+        for (let component of this.components) {
+            
             if (component.enabled) component.render();
         }
     }
@@ -81,12 +83,25 @@ class GameCore{
         const context = canvas.getContext('2d');
         context.clearRect(0, 0, canvas.width, canvas.height);
     }
-    addComponent(component){
+    addComponent(component, rank = 0){
         this.components.push(component);
+        this._componentsRank.push(rank);
+        let index = this.components.length-1;
+        for (let i = this.components.length-2; i >= 0 ; i--) {
+            if (this._componentsRank[i] <= rank){
+                index = i+1;
+                break;
+                
+            } 
+            this._componentsRank[i+1] = this._componentsRank[i];
+            this.components[i+1] = this.components[i];
+        }
+        this.components[index] = component;
+        this._componentsRank[index] = rank;
     }
 
-}
 
+}
 // let gameCore = new GameCore(960,540);
 let instance = GameCore.getInstance();
 export default instance;

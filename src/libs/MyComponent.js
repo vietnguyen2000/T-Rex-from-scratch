@@ -3,11 +3,11 @@ import MyObject from './MyObject.js';
 import Vec2 from '../utils/Vec2.js';
 
 class MyComponent extends MyObject{
-    constructor(MyGameObject){
+    constructor(MyGameObject, rank = 0 ){
         super();
         this.gameObject = MyGameObject;
-        this.gameObject.addComponent(this)
-        this.gameCore.components.push(this);
+        this.gameObject.addComponent(this);
+        this.gameCore.addComponent(this,rank);
         
     }
     update(time,delta){}

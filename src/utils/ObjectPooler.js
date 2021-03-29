@@ -1,6 +1,6 @@
 class ObjectPooler {
-    constructor(GameObject, capacity = 10) {
-        this.type = GameObject;
+    constructor(GameObjects, capacity = 10) {
+        this.type = GameObjects;
         this.ready = []
         this.size = 0;
 
@@ -19,7 +19,8 @@ class ObjectPooler {
     }
     instantiate(n){
         for (let i = 0 ; i < n ; i++) {
-            let temp = new this.type()
+            let type = this.type[Math.floor(Math.random() * this.type.length)];
+            let temp = new type();
             temp.setActive(false);
             this.ready.push(temp);
         }

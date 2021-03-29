@@ -2,8 +2,8 @@ import MyComponent from '../MyComponent.js';
 import Vec2 from '../../utils/Vec2.js';
 import Position from '../../utils/Position.js';
 class Sprite extends MyComponent{
-    constructor(myGameObject) {
-        super(myGameObject);
+    constructor(myGameObject, rank) {
+        super(myGameObject, rank);
         this.image = null;
         this.imageData = {};
     }

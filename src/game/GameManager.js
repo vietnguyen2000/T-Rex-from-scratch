@@ -3,7 +3,9 @@ import MyComponent from "../libs/MyComponent.js";
 import MyGameObject from "../libs/MyGameObject.js";
 import ObjectPooler from "../utils/ObjectPooler.js";
 import Vec2 from "../utils/Vec2.js";
+import Bird from "./Obtacle/Bird/Bird.js";
 import Cactus from "./Obtacle/Cactus/Cactus.js";
+
 
 class GameManagerController extends MyComponent {
     constructor(myGameObject) {
@@ -21,9 +23,9 @@ class GameManagerController extends MyComponent {
 
         this.playerCol = this.gameObject.player.getComponent('BoxCollider');
 
-        this.cactusPooler = new ObjectPooler(Cactus,20);
+        this.obtaclePooler = new ObjectPooler([Cactus, Bird],10);
 
-        this.listCactus = [];
+        this.listObtacle = [];
         this.currentCactus = null;
         this.applySpeed(this._speed);
     }
@@ -42,14 +44,14 @@ class GameManagerController extends MyComponent {
         if (Math.abs(this._fps-this.gameObject.fps.num) > 3)
             this.gameObject.fps.setNumber(Math.floor(1000/delta))
 
-        this.generateCactusByTime(delta);
+        this.generateObtacleByTime(delta);
 
-        if (this.currentCactus == null) this.currentCactus = this.getNewCactus();
+        if (this.currentCactus == null) this.currentCactus = this.getNewObtacle();
 
         if (this.currentCactus != null) {
             if (this.currentCactus.getPosition().x < -300) {
-                this.cactusPooler.disableInstance(this.currentCactus);
-                this.currentCactus = this.getNewCactus();
+                this.obtaclePooler.disableInstance(this.currentCactus);
+                this.currentCactus = this.getNewObtacle();
             }
             let col = this.currentCactus.getComponent('BoxCollider');
             if (col.isTouch(this.playerCol)) {
@@ -76,23 +78,23 @@ class GameManagerController extends MyComponent {
         }
     }
     
-    getNewCactus() {
-        if (this.listCactus.length == 0) {
-            this.generateCactus();
-            return this.getNewCactus();
+    getNewObtacle() {
+        if (this.listObtacle.length == 0) {
+            this.generateObtacle();
+            return this.getNewObtacle();
         }
-        return this.listCactus.shift();
+        return this.listObtacle.shift();
     }
-    generateCactusByTime(delta){
+    generateObtacleByTime(delta){
         this._timeGenerate += delta/1000;
         if (this._timeGenerate > this._randomRate) {
-            this.generateCactus();
+            this.generateObtacle();
             
         }   
     }
-    generateCactus() {
-        let instance = this.cactusPooler.getInstance();
-        this.listCactus.push(instance);
+    generateObtacle() {
+        let instance = this.obtaclePooler.getInstance();
+        this.listObtacle.push(instance);
         
         this._timeGenerate = 0;
         instance.controller.setSpeed(this._speed);
@@ -112,13 +114,13 @@ class GameManagerController extends MyComponent {
     }   
 
     disableAllObtacles() {
-        this.cactusPooler.disableInstance(this.currentCactus);
+        this.obtaclePooler.disableInstance(this.currentCactus);
         this.currentCactus = null;
-        for (let obtacle of this.listCactus) {
-            this.cactusPooler.disableInstance(obtacle);            
+        for (let obtacle of this.listObtacle) {
+            this.obtaclePooler.disableInstance(obtacle);            
         }
         
-        this.listCactus = [];
+        this.listObtacle = [];
     }
 
     applySpeed(speed) { 
@@ -126,7 +128,7 @@ class GameManagerController extends MyComponent {
         this._rate = this._defaultRate/mul;
         this._speed = speed;
         this.gameObject.ground.controller.setSpeed(speed);
-        for (let cactus of this.listCactus) {
+        for (let cactus of this.listObtacle) {
             cactus.controller.setSpeed(speed);
         }
     }
