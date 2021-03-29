@@ -4,7 +4,7 @@ import MyGameObject from "../../libs/MyGameObject.js";
 class GameOver extends MyGameObject {
     constructor(pos) {
         super(pos);
-        this.sprite = new Sprite(this)
+        this.sprite = new Sprite(this,1)
         let img = new Image();
         img.src = 'art/GameOver/GameOver.png'
         this.sprite.setSprite(img);

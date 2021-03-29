@@ -61,13 +61,13 @@ class GameManagerController extends MyComponent {
         }  
     }
 
-    render() {
-        if (this.currentCactus != null) {
-            let col = this.currentCactus.getComponent('BoxCollider');
-            col.debugRender();
-        }
+    // render() {
+    //     if (this.currentCactus != null) {
+    //         let col = this.currentCactus.getComponent('BoxCollider');
+    //         col.debugRender();
+    //     }
         
-    }
+    // }
 
     pause(time, delta) {
         if (inputManager.getKeyDown(inputManager.keyCode.SPACE) || 
